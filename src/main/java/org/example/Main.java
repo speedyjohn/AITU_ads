@@ -31,13 +31,20 @@ public class Main {
 //        double average = solution2(numbers);
 //        System.out.println("Average number is: " + average);
 
+        // 3
+//        System.out.println("Enter the number: ");
+//        int number = sc.nextInt();
+//        if(solution3(number)) {
+//            System.out.println(number + " is prime number.");
+//        } else {
+//            System.out.println(number + " is composite number.");
+//        }
+
+        // 4
         System.out.println("Enter the number: ");
         int number = sc.nextInt();
-        if(solution3(number)) {
-            System.out.println(number + " is prime number.");
-        } else {
-            System.out.println(number + " is composite number.");
-        }
+        int factorial = solution4(number);
+        System.out.println("Factorial of the number " + number + " = " + factorial);
 
     }
     public static int solution1(int[] array) {
@@ -68,5 +75,11 @@ public class Main {
             }
         }
         return true;
+    }
+    public static int solution4(int number) {
+        if(number == 1) {
+            return 1;
+        }
+        return number * solution4(number - 1);
     }
 }
