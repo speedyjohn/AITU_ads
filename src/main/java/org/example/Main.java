@@ -7,6 +7,18 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         // 1
+//        System.out.println("Enter length of the array: ");
+//        int size = sc.nextInt();
+//
+//        System.out.println("Enter " + size + " numbers: ");
+//        int[] numbers = new int[size];
+//        for(int i = 0; i < size; i++) {
+//            numbers[i] = sc.nextInt();
+//        }
+//
+//        int min = solution1(numbers);
+//        System.out.println("The minimum value is: " + min);
+
         System.out.println("Enter length of the array: ");
         int size = sc.nextInt();
 
@@ -15,9 +27,10 @@ public class Main {
         for(int i = 0; i < size; i++) {
             numbers[i] = sc.nextInt();
         }
+        double average = solution2(numbers);
+        System.out.println("Average number is: " + average);
 
-        int min = solution1(numbers);
-        System.out.println("The minimum value is: " + min);
+
     }
     public static int solution1(int[] array) {
         int min = array[0];
@@ -26,6 +39,16 @@ public class Main {
                 min = array[i];
             }
         }
+
         return min;
     }
+    public static double solution2(int[] array) {
+        int sum = 0;
+        for(int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+
+        return sum / array.length;
+    }
+
 }
