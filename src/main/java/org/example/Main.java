@@ -75,10 +75,16 @@ public class Main {
 //        }
 
         // 9
-        System.out.println("Enter the numbers n and k: ");
-        int n = sc.nextInt();
-        int k = sc.nextInt();
-        System.out.println("Combinations for the given numbers " + solution9(n, k));
+//        System.out.println("Enter the numbers n and k: ");
+//        int n = sc.nextInt();
+//        int k = sc.nextInt();
+//        System.out.println("Combinations for the given numbers " + solution9(n, k));
+
+        // 10
+        System.out.println("Enter the numbers: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.println(solution10(a, b));
     }
     public static int solution1(int[] array) {
         int min = array[0];
@@ -152,5 +158,17 @@ public class Main {
             return 1;
         }
         return solution9(n - 1, k - 1) + solution9(n - 1, k );
+    }
+
+    public static int solution10(int a, int b) {
+        if(a < b) {
+            int x = a;
+            a = b;
+            b = x;
+        }
+        if(a % b == 0) {
+            return b;
+        }
+        return solution10(b, a % b);
     }
 }
