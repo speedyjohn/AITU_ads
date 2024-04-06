@@ -66,13 +66,19 @@ public class Main {
 //        solution7(number);
 
         // 8
-        System.out.println("Enter the string: ");
-        String s = sc.nextLine();
-        if(solution8(s, 0)) {
-            System.out.println("String is all consist of digits.");
-        } else {
-            System.out.println("String is not all consist of digits.");
-        }
+//        System.out.println("Enter the string: ");
+//        String s = sc.nextLine();
+//        if(solution8(s, 0)) {
+//            System.out.println("String is all consist of digits.");
+//        } else {
+//            System.out.println("String is not all consist of digits.");
+//        }
+
+        // 9
+        System.out.println("Enter the numbers n and k: ");
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        System.out.println("Combinations for the given numbers " + solution9(n, k));
     }
     public static int solution1(int[] array) {
         int min = array[0];
@@ -140,5 +146,11 @@ public class Main {
             return false;
         }
         return solution8(s, index + 1);
+    }
+    public static int solution9(int n, int k) {
+        if(k == 0 || k == n) {
+            return 1;
+        }
+        return solution9(n - 1, k - 1) + solution9(n - 1, k );
     }
 }
