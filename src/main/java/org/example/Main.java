@@ -47,10 +47,17 @@ public class Main {
 //        System.out.println("Factorial of the number " + number + " = " + factorial);
 
         // 5
-        System.out.println("Enter the number: ");
+//        System.out.println("Enter the number: ");
+//        int number = sc.nextInt();
+//        int fibonacci = solution5(number);
+//        System.out.println("n-th number in Fibonacci sequence is " + fibonacci);
+
+        // 6
+        System.out.println("Enter the number and the degree:");
         int number = sc.nextInt();
-        int fibonacci = solution5(number);
-        System.out.println("n-th number in Fibonacci sequence is " + fibonacci);
+        int degree = sc.nextInt();
+        int numberInPow = solution6(number, degree);
+        System.out.println(number + "to the power " + degree + " = " + numberInPow);
     }
     public static int solution1(int[] array) {
         int min = array[0];
@@ -95,5 +102,11 @@ public class Main {
             return 1;
         }
         return solution5(number - 1) + solution5(number - 2);
+    }
+    public static int solution6(int number, int degree) {
+        if(degree == 0) {
+            return 1;
+        }
+        return number * solution6(number, degree - 1);
     }
 }
