@@ -3,8 +3,8 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
         // 1
 //        System.out.println("Enter length of the array: ");
@@ -53,11 +53,17 @@ public class Main {
 //        System.out.println("n-th number in Fibonacci sequence is " + fibonacci);
 
         // 6
-        System.out.println("Enter the number and the degree:");
+//        System.out.println("Enter the number and the degree:");
+//        int number = sc.nextInt();
+//        int degree = sc.nextInt();
+//        int numberInPow = solution6(number, degree);
+//        System.out.println(number + "to the power " + degree + " = " + numberInPow);
+
+        // 7
+        System.out.println("Enter length of the sequence: ");
         int number = sc.nextInt();
-        int degree = sc.nextInt();
-        int numberInPow = solution6(number, degree);
-        System.out.println(number + "to the power " + degree + " = " + numberInPow);
+        System.out.println("Enter " + number + " numbers: ");
+        solution7(number);
     }
     public static int solution1(int[] array) {
         int min = array[0];
@@ -108,5 +114,13 @@ public class Main {
             return 1;
         }
         return number * solution6(number, degree - 1);
+    }
+    public static void solution7(int number) {
+        if(number == 0) {
+            return;
+        }
+        int value = sc.nextInt();
+        solution7(number - 1);
+        System.out.print(value + " ");
     }
 }
