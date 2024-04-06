@@ -19,17 +19,25 @@ public class Main {
 //        int min = solution1(numbers);
 //        System.out.println("The minimum value is: " + min);
 
-        System.out.println("Enter length of the array: ");
-        int size = sc.nextInt();
+        // 2
+//        System.out.println("Enter length of the array: ");
+//        int size = sc.nextInt();
+//
+//        System.out.println("Enter " + size + " numbers: ");
+//        int[] numbers = new int[size];
+//        for(int i = 0; i < size; i++) {
+//            numbers[i] = sc.nextInt();
+//        }
+//        double average = solution2(numbers);
+//        System.out.println("Average number is: " + average);
 
-        System.out.println("Enter " + size + " numbers: ");
-        int[] numbers = new int[size];
-        for(int i = 0; i < size; i++) {
-            numbers[i] = sc.nextInt();
+        System.out.println("Enter the number: ");
+        int number = sc.nextInt();
+        if(solution3(number)) {
+            System.out.println(number + " is prime number.");
+        } else {
+            System.out.println(number + " is composite number.");
         }
-        double average = solution2(numbers);
-        System.out.println("Average number is: " + average);
-
 
     }
     public static int solution1(int[] array) {
@@ -50,5 +58,15 @@ public class Main {
 
         return sum / array.length;
     }
-
+    public static boolean solution3(int number) {
+        if(number < 1) {
+            return false;
+        }
+        for(int i = 2; i < Math.sqrt(number); i++) {
+            if(number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
