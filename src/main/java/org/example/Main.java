@@ -1,90 +1,130 @@
 package org.example;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-
-        // 1
-//        System.out.println("Enter length of the array: ");
-//        int size = sc.nextInt();
-//
-//        System.out.println("Enter " + size + " numbers: ");
-//        int[] numbers = new int[size];
-//        for(int i = 0; i < size; i++) {
-//            numbers[i] = sc.nextInt();
-//        }
-//
-//        int min = solution1(numbers);
-//        System.out.println("The minimum value is: " + min);
-
-        // 2
-//        System.out.println("Enter length of the array: ");
-//        int size = sc.nextInt();
-//
-//        System.out.println("Enter " + size + " numbers: ");
-//        int[] numbers = new int[size];
-//        for(int i = 0; i < size; i++) {
-//            numbers[i] = sc.nextInt();
-//        }
-//        double average = solution2(numbers);
-//        System.out.println("Average number is: " + average);
-
-        // 3
-//        System.out.println("Enter the number: ");
-//        int number = sc.nextInt();
-//        if(solution3(number)) {
-//            System.out.println(number + " is prime number.");
-//        } else {
-//            System.out.println(number + " is composite number.");
-//        }
-
-        // 4
-//        System.out.println("Enter the number: ");
-//        int number = sc.nextInt();
-//        int factorial = solution4(number);
-//        System.out.println("Factorial of the number " + number + " = " + factorial);
-
-        // 5
-//        System.out.println("Enter the number: ");
-//        int number = sc.nextInt();
-//        int fibonacci = solution5(number);
-//        System.out.println("n-th number in Fibonacci sequence is " + fibonacci);
-
-        // 6
-//        System.out.println("Enter the number and the degree:");
-//        int number = sc.nextInt();
-//        int degree = sc.nextInt();
-//        int numberInPow = solution6(number, degree);
-//        System.out.println(number + "to the power " + degree + " = " + numberInPow);
-
-        // 7
-//        System.out.println("Enter length of the sequence: ");
-//        int number = sc.nextInt();
-//        System.out.println("Enter " + number + " numbers: ");
-//        solution7(number);
-
-        // 8
-//        System.out.println("Enter the string: ");
-//        String s = sc.nextLine();
-//        if(solution8(s, 0)) {
-//            System.out.println("String is all consist of digits.");
-//        } else {
-//            System.out.println("String is not all consist of digits.");
-//        }
-
-        // 9
-//        System.out.println("Enter the numbers n and k: ");
-//        int n = sc.nextInt();
-//        int k = sc.nextInt();
-//        System.out.println("Combinations for the given numbers " + solution9(n, k));
-
-        // 10
-        System.out.println("Enter the numbers: ");
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        System.out.println(solution10(a, b));
+        int size, number, a, b, n, k;
+        int[] numbers;
+        String s;
+        String incorrectInput = """
+                =============================================
+                Incorrect input.
+                =============================================
+                """;
+        System.out.println("""
+                Enter 0 if you want to quit the program
+                Programs:
+                1: Find the minimum value of the array
+                2: Find the average value of the array
+                3: Check whether number prime or nor
+                4: Find n!
+                5: Find n-th number of the Fibonacci sequence
+                6: Raise a number to a certain degree
+                7: Reverse the sequence
+                8: Check whether string is all consist of digits or not
+                9: Find binomial coefficient for certain numbers
+                10: Find GCD for certain numbers
+                """);
+        while(true) {
+            try{
+                System.out.println("\n=============================================");
+                System.out.println("Enter the number of the problem you want to solve(1-10): ");
+                System.out.println("=============================================\n");
+                int task = sc.nextInt();
+                if(task == 0) {
+                    break;
+                }
+                switch(task) {
+                    case 1:
+                        System.out.println("Enter length of the array: ");
+                        size = sc.nextInt();
+                        System.out.println("Enter " + size + " numbers: ");
+                        numbers = new int[size];
+                        for(int i = 0; i < size; i++) {
+                            numbers[i] = sc.nextInt();
+                        }
+                        int min = solution1(numbers);
+                        System.out.println("The minimum value is: " + min);
+                        break;
+                    case 2:
+                        System.out.println("Enter length of the array: ");
+                        size = sc.nextInt();
+                        System.out.println("Enter " + size + " numbers: ");
+                        numbers = new int[size];
+                        for(int i = 0; i < size; i++) {
+                            numbers[i] = sc.nextInt();
+                        }
+                        double average = solution2(numbers);
+                        System.out.println("Average number is: " + average);
+                        break;
+                    case 3:
+                        System.out.println("Enter the number: ");
+                        number = sc.nextInt();
+                        if(solution3(number)) {
+                            System.out.println(number + " is prime number.");
+                        } else {
+                            System.out.println(number + " is composite number.");
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Enter the number: ");
+                        number = sc.nextInt();
+                        int factorial = solution4(number);
+                        System.out.println("Factorial of the number " + number + " = " + factorial);
+                        break;
+                    case 5:
+                        System.out.println("Enter the number: ");
+                        number = sc.nextInt();
+                        int fibonacci = solution5(number);
+                        System.out.println("n-th number in Fibonacci sequence is " + fibonacci);
+                        break;
+                    case 6:
+                        System.out.println("Enter the number and the degree:");
+                        number = sc.nextInt();
+                        int degree = sc.nextInt();
+                        int numberInPow = solution6(number, degree);
+                        System.out.println(number + "to the power " + degree + " = " + numberInPow);
+                        break;
+                    case 7:
+                        System.out.println("Enter length of the sequence: ");
+                        number = sc.nextInt();
+                        System.out.println("Enter " + number + " numbers: ");
+                        solution7(number);
+                        break;
+                    case 8:
+                        System.out.println("Enter the string: ");
+                        s = sc.nextLine();
+                        if(solution8(s, 0)) {
+                            System.out.println("String is all consist of digits.");
+                        } else {
+                            System.out.println("String is not all consist of digits.");
+                        }
+                        break;
+                    case 9:
+                        System.out.println("Enter the numbers n and k: ");
+                        n = sc.nextInt();
+                        k = sc.nextInt();
+                        int coefficient = solution9(n, k);
+                        System.out.println("Binomial coefficient for the given numbers " + coefficient);
+                        break;
+                    case 10:
+                        System.out.println("Enter the numbers: ");
+                        a = sc.nextInt();
+                        b = sc.nextInt();
+                        System.out.println(solution10(a, b));
+                        break;
+                    default:
+                        System.out.println(incorrectInput);
+                        break;
+                }
+            } catch(InputMismatchException e) {
+                System.out.println(incorrectInput);
+                sc.nextLine();
+            }
+        }
     }
     public static int solution1(int[] array) {
         int min = array[0];
