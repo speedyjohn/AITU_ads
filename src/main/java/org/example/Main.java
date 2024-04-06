@@ -41,11 +41,16 @@ public class Main {
 //        }
 
         // 4
+//        System.out.println("Enter the number: ");
+//        int number = sc.nextInt();
+//        int factorial = solution4(number);
+//        System.out.println("Factorial of the number " + number + " = " + factorial);
+
+        // 5
         System.out.println("Enter the number: ");
         int number = sc.nextInt();
-        int factorial = solution4(number);
-        System.out.println("Factorial of the number " + number + " = " + factorial);
-
+        int fibonacci = solution5(number);
+        System.out.println("n-th number in Fibonacci sequence is " + fibonacci);
     }
     public static int solution1(int[] array) {
         int min = array[0];
@@ -81,5 +86,14 @@ public class Main {
             return 1;
         }
         return number * solution4(number - 1);
+    }
+    public static int solution5(int number) {
+        if(number == 0) {
+            return 0;
+        }
+        if(number == 1) {
+            return 1;
+        }
+        return solution5(number - 1) + solution5(number - 2);
     }
 }
