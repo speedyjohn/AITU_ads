@@ -60,10 +60,19 @@ public class Main {
 //        System.out.println(number + "to the power " + degree + " = " + numberInPow);
 
         // 7
-        System.out.println("Enter length of the sequence: ");
-        int number = sc.nextInt();
-        System.out.println("Enter " + number + " numbers: ");
-        solution7(number);
+//        System.out.println("Enter length of the sequence: ");
+//        int number = sc.nextInt();
+//        System.out.println("Enter " + number + " numbers: ");
+//        solution7(number);
+
+        // 8
+        System.out.println("Enter the string: ");
+        String s = sc.nextLine();
+        if(solution8(s, 0)) {
+            System.out.println("String is all consist of digits.");
+        } else {
+            System.out.println("String is not all consist of digits.");
+        }
     }
     public static int solution1(int[] array) {
         int min = array[0];
@@ -122,5 +131,14 @@ public class Main {
         int value = sc.nextInt();
         solution7(number - 1);
         System.out.print(value + " ");
+    }
+    public static boolean solution8(String s, int index) {
+        if(index == s.length()) {
+            return true;
+        }
+        if(!Character.isDigit(s.charAt(index))) {
+            return false;
+        }
+        return solution8(s, index + 1);
     }
 }
