@@ -6,9 +6,14 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
+        /**
+         * Initialization of default variables and variables that can be used several times.
+         */
         int size, number, a, b, n, k;
         int[] numbers;
         String s;
+        double startTime, endTime, duration;
+
         String incorrectInput = """
                 =============================================
                 Incorrect input.
@@ -28,6 +33,11 @@ public class Main {
                 9: Find binomial coefficient for certain numbers
                 10: Find GCD for certain numbers
                 """);
+        /**
+         * While cycle to be able to rerun the program and solve different tasks.
+         * Try-catch construction to handle incorrect input.
+         * Switch case to choose problem to solve including default to handle incorrect number of problem.
+         */
         while(true) {
             try{
                 System.out.println("\n=============================================");
@@ -38,6 +48,10 @@ public class Main {
                     break;
                 }
                 switch(task) {
+                    /**
+                     * The start time is measured after receiving input from the user,
+                     * because otherwise the system counts the time spent by the user entering data.
+                     */
                     case 1:
                         System.out.println("Enter length of the array: ");
                         size = sc.nextInt();
@@ -46,8 +60,12 @@ public class Main {
                         for(int i = 0; i < size; i++) {
                             numbers[i] = sc.nextInt();
                         }
-                        int min = solution1(numbers);
+                        startTime = System.nanoTime();
+                        int min = minValue(numbers);
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
                         System.out.println("The minimum value is: " + min);
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 2:
                         System.out.println("Enter length of the array: ");
@@ -57,76 +75,124 @@ public class Main {
                         for(int i = 0; i < size; i++) {
                             numbers[i] = sc.nextInt();
                         }
-                        double average = solution2(numbers);
+                        startTime = System.nanoTime();
+                        double average = averageValue(numbers);
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
                         System.out.println("Average number is: " + average);
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 3:
                         System.out.println("Enter the number: ");
                         number = sc.nextInt();
-                        if(solution3(number)) {
+                        startTime = System.nanoTime();
+                        if(isPrime(number)) {
                             System.out.println(number + " is prime number.");
                         } else {
                             System.out.println(number + " is composite number.");
                         }
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 4:
                         System.out.println("Enter the number: ");
                         number = sc.nextInt();
-                        int factorial = solution4(number);
-                        System.out.println("Factorial of the number " + number + " = " + factorial);
+                        startTime = System.nanoTime();
+                        int fact = factorial(number);
+                        System.out.println("Factorial of the number " + number + " = " + fact);
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 5:
                         System.out.println("Enter the number: ");
                         number = sc.nextInt();
-                        int fibonacci = solution5(number);
+                        startTime = System.nanoTime();
+                        int fibonacci = fibonacciSequence(number);
                         System.out.println("n-th number in Fibonacci sequence is " + fibonacci);
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 6:
                         System.out.println("Enter the number and the degree:");
                         number = sc.nextInt();
                         int degree = sc.nextInt();
-                        int numberInPow = solution6(number, degree);
-                        System.out.println(number + "to the power " + degree + " = " + numberInPow);
+                        startTime = System.nanoTime();
+                        int numberInDegree = pow(number, degree);
+                        System.out.println(number + " to the power " + degree + " = " + numberInDegree);
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 7:
                         System.out.println("Enter length of the sequence: ");
                         number = sc.nextInt();
+                        startTime = System.nanoTime(); // We are taking input sequence inside method, so time taken includes time to input sequence
                         System.out.println("Enter " + number + " numbers: ");
-                        solution7(number);
+                        reverseSequence(number);
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 8:
                         System.out.println("Enter the string: ");
+                        sc.nextLine(); // Without this line, s takes the value 8(input value to select the problem)
                         s = sc.nextLine();
-                        if(solution8(s, 0)) {
+                        startTime = System.nanoTime();
+                        if(isDigit(s, 0)) {
                             System.out.println("String is all consist of digits.");
                         } else {
                             System.out.println("String is not all consist of digits.");
                         }
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 9:
                         System.out.println("Enter the numbers n and k: ");
                         n = sc.nextInt();
                         k = sc.nextInt();
-                        int coefficient = solution9(n, k);
+                        startTime = System.nanoTime();
+                        int coefficient = binomialCoefficient(n, k);
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
                         System.out.println("Binomial coefficient for the given numbers " + coefficient);
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     case 10:
                         System.out.println("Enter the numbers: ");
                         a = sc.nextInt();
                         b = sc.nextInt();
-                        System.out.println(solution10(a, b));
+                        startTime = System.nanoTime();
+                        System.out.println(gcd(a, b));
+                        endTime = System.nanoTime();
+                        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+                        System.out.println("Time taken: " + duration + " milliseconds");
                         break;
                     default:
+                        // If input number is not correct
                         System.out.println(incorrectInput);
                         break;
                 }
             } catch(InputMismatchException e) {
+                // If input is not correct
                 System.out.println(incorrectInput);
                 sc.nextLine();
             }
         }
     }
-    public static int solution1(int[] array) {
+    /**
+     * This method returns the smallest number from an array.
+     * It uses a for cycle.
+     * Time complexity: O(n), where n is length of input array.
+     * For cycle iterates through the array and searches the smallest number,
+     * resulting in linear time complexity.
+     * @param array The array of integers where we need to find smallest.
+     * @return min The smallest integer from the array
+     */
+    public static int minValue(int[] array) {
         int min = array[0];
         for (int i = 1; i < array.length; i++) {
             if (array[i] < min) {
@@ -136,15 +202,36 @@ public class Main {
 
         return min;
     }
-    public static double solution2(int[] array) {
+    /**
+     * This method returns average number from the array.
+     * It uses a for cycle.
+     * Time complexity: O(n), where n length of input array.
+     * For cycle iterating through the array and calculating sum of all elements,
+     * after this, algorithm divides the sum by length of an array and return average.
+     * The result is linear time complexity.
+     * @param array The array of integers where we need to find average.
+     * @return average The average number from the given array.
+     */
+    public static double averageValue(int[] array) {
         int sum = 0;
-        for(int i = 0; i < array.length; i++) {
-            sum += array[i];
+        for (int i: array) {
+            sum += i;
         }
+        double average = (double) sum / array.length;
 
-        return sum / array.length;
+        return average;
     }
-    public static boolean solution3(int number) {
+
+    /**
+     * This method returns whether the number is prime or not.
+     * It uses a for cycle.
+     * Time complexity: O(sqrt(n)), where n is the input number.
+     * For cycle iterating through the numbers between 2 and square root of n,
+     * resulting in square root time complexity.
+     * @param number The number to check for primary.
+     * @return boolean True if number is prime, false if not.
+     */
+    public static boolean isPrime(int number) {
         if(number < 1) {
             return false;
         }
@@ -153,62 +240,137 @@ public class Main {
                 return false;
             }
         }
+
         return true;
     }
-    public static int solution4(int number) {
-        if(number == 1) {
+
+    /**
+     * This method returns the factorial of the input number.
+     * It uses recursion.
+     * Time complexity: O(n), where n is the input number.
+     * Using recursion, the method multiplies all numbers from n to 1 by calling itself with the parameter n - 1.
+     * The result is linear time complexity.
+     * @param number The number whose factorial is to be found.
+     * @return factorial The factorial of the input number.
+     */
+    public static int factorial(int number) {
+        if(number == 1) { // Base case
             return 1;
         }
-        return number * solution4(number - 1);
+
+        return number * factorial(number - 1);
     }
-    public static int solution5(int number) {
-        if(number == 0) {
+
+    /**
+     * This method calculates a number in the Fibonacci sequence at a given position.
+     * It uses recursion to calculate the previous two numbers until it reaches the base cases.
+     * Time complexity: O(2^n), where n is the position in the Fibonacci sequence.
+     * The method uses a binary recursion, which results in an exponential number of calls.
+     * The result is exponential time complexity due to the number of recursive calls doubling with each increase in input size.
+     * @param number The position in the Fibonacci sequence to find the corresponding number for.
+     * @return fibonacciNumber The number in the Fibonacci sequence at the given position.
+     */
+    public static int fibonacciSequence(int number) {
+        if(number == 0) { // Base case
             return 0;
         }
-        if(number == 1) {
+        if(number == 1) { // Base case
             return 1;
         }
-        return solution5(number - 1) + solution5(number - 2);
+
+        return fibonacciSequence(number - 1) + fibonacciSequence(number - 2);
     }
-    public static int solution6(int number, int degree) {
-        if(degree == 0) {
+
+    /**
+     * This method calculates the power of a given number raised to a specified degree using recursion.
+     * The method recursively multiplies the number by itself degree times until the base case is reached.
+     * Time complexity: O(n), where n is the exponent to which the number is raised.
+     * The method makes a number of recursive calls equal to the degree, resulting in linear time complexity.
+     * @param number The base number to be raised to a power.
+     * @param degree The exponent to which the base number is raised.
+     * @return The result of raising the base number to the given power.
+     */
+    public static int pow(int number, int degree) {
+        if(degree == 0) { // Base case
             return 1;
         }
-        return number * solution6(number, degree - 1);
+
+        return number * pow(number, degree - 1);
     }
-    public static void solution7(int number) {
-        if(number == 0) {
+
+    /**
+     * This method reads a sequence of integers from standard input and prints them in reverse order.
+     * It uses recursion to read the numbers and then prints them from the last one to the first one as the recursive calls return.
+     * Time complexity: O(n), where n is the number of integers to read. Each recursive call processes one number.
+     * The recursion depth is equal to the number of integers, resulting in linear time complexity.
+     * @param number The count of integers to read from standard input.
+     */
+    public static void reverseSequence(int number) {
+        if(number == 0) { // Base case
             return;
         }
         int value = sc.nextInt();
-        solution7(number - 1);
+        reverseSequence(number - 1);
+
         System.out.print(value + " ");
     }
-    public static boolean solution8(String s, int index) {
-        if(index == s.length()) {
+
+    /**
+     * This method checks if all characters in a string are digits using recursion.
+     * It starts from the first character and checks each one; if a non-digit is found, it returns false.
+     * Time complexity: O(n), where n is the length of the string. Each recursive call processes one character of the string.
+     * The method makes a number of recursive calls equal to the length of the string, resulting in linear time complexity.
+     * @param s The string to check for digit-only characters.
+     * @param index The current index being checked in the recursive call.
+     * @return boolean True if all characters are digits, false otherwise.
+     */
+    public static boolean isDigit(String s, int index) {
+        if(index == s.length()) { // Base case
             return true;
         }
         if(!Character.isDigit(s.charAt(index))) {
             return false;
         }
-        return solution8(s, index + 1);
-    }
-    public static int solution9(int n, int k) {
-        if(k == 0 || k == n) {
-            return 1;
-        }
-        return solution9(n - 1, k - 1) + solution9(n - 1, k );
+
+        return isDigit(s, index + 1);
     }
 
-    public static int solution10(int a, int b) {
-        if(a < b) {
+    /**
+     * This method calculates the binomial coefficient (n choose k), which represents the number of ways to choose k elements from a set of n elements without regard to the order.
+     * It uses a recursive approach based on the recurrence relation C(n, k) = C(n-1, k-1) + C(n-1, k).
+     * Time complexity: O(n*k), where n is the total number of items and k is the number of items to choose.
+     * The number of recursive calls expands as it depends on the values of n and k, leading to a total of n*k calls in the worst case.
+     * @param n The total number of items.
+     * @param k The number of items to choose.
+     * @return The binomial coefficient representing the number of possible combinations.
+     */
+    public static int binomialCoefficient(int n, int k) {
+        if(k == 0 || k == n) { // base case
+            return 1;
+        }
+
+        return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k );
+    }
+
+    /**
+     * This method calculates the greatest common divisor (GCD) of two integers using the Euclidean algorithm.
+     * It recursively applies the operation gcd(b, a % b) until a % b is zero, at which point b is the GCD.
+     * Time complexity: O(log(min(a, b))), where a and b are the input integers.
+     * The recursive calls continue until the remainder is 0, with the number of calls logarithmically decreasing with respect to the smaller number.
+     * @param a The first integer to find the GCD for.
+     * @param b The second integer to find the GCD for.
+     * @return The greatest common divisor of a and b.
+     */
+    public static int gcd(int a, int b) {
+        if(a < b) { // Checking if a > b and replace them if needed.
             int x = a;
             a = b;
             b = x;
         }
-        if(a % b == 0) {
+        if(a % b == 0) { // Base case
             return b;
         }
-        return solution10(b, a % b);
+
+        return gcd(b, a % b);
     }
 }
